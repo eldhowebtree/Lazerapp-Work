@@ -1,4 +1,3 @@
-app_name = "lazerapp"
 app_title = "Lazerapp"
 app_publisher = "eldho.mathew@webtreeonline.com"
 app_description = "lazerapp"
@@ -241,4 +240,35 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+# doctype_js = {
+#     "Material Request": "public/js/material_request_item_group.js",
+#     "Purchase Order": "public/js/purchase_order_item_group.js",
+#     "Purchase Order": "public/js/purchase_order.js",
+# }
+# doctype_js = {
+#     "Purchase Order": "public/js/purchase_order_item_group.js"
+# }
+
+doctype_js = {
+    "Material Request": "public/js/material_request_item_group.js",
+    "Purchase Order": [
+        "public/js/purchase_order_item_group.js",
+        "public/js/purchase_order_fetching_value.js"
+    ],
+    "Purchase Receipt": "public/js/purchase_receipt_payment_button.js"
+}
+
+
+
+
+fixtures = [
+    {"dt": "Custom Field", "filters": [["module", "=", "Lazer App"]]},
+    {"dt": "Property Setter", "filters": [["module", "=", "Lazer App"]]},
+]
+fixtures = ["Custom Field", "Property Setter"]
+
+app_include_js = ["lazerapp/public/js/history_back.js"]
+app_include_css = ["lazerapp/public/css/history_back.css"]
+
 

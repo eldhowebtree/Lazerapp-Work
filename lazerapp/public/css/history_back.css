@@ -1,0 +1,25 @@
+.lazerapp-back-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;          /* Put it bottom-left; change to right if you prefer */
+  z-index: 9999;
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .lazerapp-back-btn {
+    bottom: 14px;
+    left: 14px;
+    padding: 6px 10px;
+  }
+}
+
+/* Hide when printing */
+@media print {
+  .lazerapp-back-btn { display: none !important; }
+}
