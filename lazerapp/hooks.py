@@ -262,7 +262,8 @@ app_license = "mit"
 doctype_js = {
     "Material Request": [
         "public/js/material_request_item_group.js",
-        "public/js/extract_branch_code.js"
+        "public/js/extract_branch_code.js",
+        "public/js/material_request_update_title.js"
     ],
 
     "Purchase Order": [
