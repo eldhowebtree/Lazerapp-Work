@@ -266,7 +266,6 @@ doctype_js = {
         "public/js/extract_branch_code.js",
         "public/js/material_request_update_title.js",
         "public/js/history_back.js"
-
     ],
 
     "Purchase Order": [
@@ -276,7 +275,7 @@ doctype_js = {
     ],
 
     "Purchase Receipt": [
-        "public/js/purchase_receipt_payment_button.js",
+        "public/js/purchase_receipt.js",
         "public/js/extract_branch_code.js"
     ],
 
@@ -297,10 +296,17 @@ doctype_js = {
     "Purchase Invoice": [
         "public/js/extract_branch_code.js"
     ],
+
     "Employee": [
         "public/js/extract_branch_code.js"
     ],
+
+    "Expense Claim": [
+        "public/js/expense_claim.js",
+        "public/js/extract_branch_code.js"
+    ],
 }
+
 
 fixtures = [
     {
@@ -337,9 +343,15 @@ fixtures = ["Custom Field", "Property Setter"]
 app_include_js = ["lazerapp/public/js/history_back.js"]
 app_include_css = ["lazerapp/public/css/history_back.css"]
 
+
 override_doctype_class = {
-    "Purchase Order": "lazerapp.doctype_overrides.purchase_order_override.CustomPurchaseOrder"
+    "Purchase Order": "lazerapp.doctype_overrides.purchase_order_override.CustomPurchaseOrder",
+    "Purchase Receipt": "lazerapp.doctype_overrides.purchase_receipt.CustomPurchaseReceipt",
+    # "Payment Entry": "lazerapp.doctype_overrides.payment_entry.PaymentEntry",
+    "Purchase Invoice": "lazerapp.doctype_overrides.purchase_invoice.CustomPurchaseInvoice",
 }
+
+
 
 doc_events = {
     "Purchase Order": {
@@ -357,6 +369,7 @@ doc_events = {
     "Quotation": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+   
 }
 
 
