@@ -285,7 +285,6 @@ doctype_js = {
     ],
 
     "Employee Transfer": [
-        "public/js/employee_transfer_benefit.js",
         "public/js/extract_branch_code.js"
     ],
 
@@ -305,6 +304,10 @@ doctype_js = {
         "public/js/expense_claim.js",
         "public/js/extract_branch_code.js"
     ],
+
+    
+
+
 }
 
 
@@ -369,6 +372,13 @@ doc_events = {
     "Quotation": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
+    
+   "Compensatory Leave Request": {
+        "validate": "lazerapp.doctype_overrides.compensatory_leave_request.validate"
+    }
+
+
    
 }
 
