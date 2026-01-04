@@ -242,24 +242,7 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
-# doctype_js = {
-#     "Material Request": "public/js/material_request_item_group.js",
-#     "Purchase Order": "public/js/purchase_order_item_group.js",
-#     "Purchase Order": "public/js/purchase_order.js",
-# }
-# doctype_js = {
-#     "Purchase Order": "public/js/purchase_order_item_group.js"
-# }
 
-# doctype_js = {
-#     "Material Request": "public/js/material_request_item_group.js",
-#     "Purchase Order": [
-#         "public/js/purchase_order_item_group.js",
-#         "public/js/purchase_order_fetching_value.js"
-#     ],
-#     "Purchase Receipt": "public/js/purchase_receipt_payment_button.js",
-#     "Payment Entry":"public/js/payment_entry_field_hide.js"
-# }
 doctype_js = {
     "Material Request": [
         "public/js/material_request_item_group.js",
@@ -304,6 +287,10 @@ doctype_js = {
         "public/js/expense_claim.js",
         "public/js/extract_branch_code.js"
     ],
+    "Leave Application":[
+
+        "public/js/extract_branch_code.js",
+    ]
 
     
 
@@ -320,6 +307,9 @@ fixtures = [
         ]
     }
 ]
+
+fixtures = ["Custom Field"]
+
 
 
 
@@ -352,6 +342,7 @@ override_doctype_class = {
     "Purchase Receipt": "lazerapp.doctype_overrides.purchase_receipt.CustomPurchaseReceipt",
     # "Payment Entry": "lazerapp.doctype_overrides.payment_entry.PaymentEntry",
     "Purchase Invoice": "lazerapp.doctype_overrides.purchase_invoice.CustomPurchaseInvoice",
+    "Leave Application": "lazerapp.doctype_overrides.leave_application.CustomLeaveApplication",
 }
 
 

@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-12-31 06:46:55.873187",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_6i5v",
+  "leave_final_settlement",
+  "employee_id",
+  "name_of_the_employee",
+  "date_of__joining",
+  "amended_from",
+  "date_of_settlement",
+  "date_of__re_joining_last_vacation",
+  "date_of_proceeding_on_leave",
+  "date_of_resuming_on_duty",
+  "total__service_period__days",
+  "basic_salary_per_month",
+  "hra__co_accomodation",
+  "total_amount",
+  "leave_salary",
+  "indemnity",
+  "grand_total_payable",
+  "for_company_name",
+  "column_break_hckf",
+  "column_break_zsu1",
+  "read_understood_and_accepted",
+  "section_break_hqga",
+  "authorised_signatory",
+  "column_break_xxdj",
+  "column_break_dtbc",
+  "column_break_fe15",
+  "name1"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_6i5v",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "leave_final_settlement",
+   "fieldtype": "Heading",
+   "label": "LEAVE /FINAL SETTLEMENT"
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "name_of_the_employee",
+   "fieldtype": "Data",
+   "label": "Name of the Employee"
+  },
+  {
+   "fetch_from": "employee_id.date_of_joining",
+   "fieldname": "date_of__joining",
+   "fieldtype": "Data",
+   "label": "Date of  Joining "
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Exit",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "date_of_settlement",
+   "fieldtype": "Date",
+   "label": "Date of settlement "
+  },
+  {
+   "fieldname": "date_of__re_joining_last_vacation",
+   "fieldtype": "Date",
+   "label": "Date of  re joining( Last Vacation)"
+  },
+  {
+   "fieldname": "date_of_proceeding_on_leave",
+   "fieldtype": "Date",
+   "label": "Date of proceeding on leave"
+  },
+  {
+   "fieldname": "date_of_resuming_on_duty",
+   "fieldtype": "Date",
+   "label": "Date of resuming on duty"
+  },
+  {
+   "fieldname": "total__service_period__days",
+   "fieldtype": "Data",
+   "label": "Total  Service period ( Days)"
+  },
+  {
+   "fieldname": "basic_salary_per_month",
+   "fieldtype": "Currency",
+   "label": "Basic Salary per month"
+  },
+  {
+   "fieldname": "hra__co_accomodation",
+   "fieldtype": "Currency",
+   "label": "HRA / Co. Accomodation"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "leave_salary",
+   "fieldtype": "Table",
+   "label": "LEAVE SALARY",
+   "options": "LEAVE SALARY"
+  },
+  {
+   "fieldname": "indemnity",
+   "fieldtype": "Table",
+   "label": "INDEMNITY",
+   "options": "INDEMNITY"
+  },
+  {
+   "fieldname": "grand_total_payable",
+   "fieldtype": "Currency",
+   "label": "Grand Total Payable"
+  },
+  {
+   "fieldname": "for_company_name",
+   "fieldtype": "Link",
+   "label": "for Company NAME",
+   "options": "Company"
+  },
+  {
+   "fieldname": "section_break_hqga",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "authorised_signatory",
+   "fieldtype": "Signature",
+   "label": "Authorised Signatory"
+  },
+  {
+   "fieldname": "column_break_xxdj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_dtbc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "column_break_hckf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_zsu1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "read_understood_and_accepted",
+   "fieldtype": "Data",
+   "label": "Read, Understood And Accepted "
+  },
+  {
+   "fieldname": "column_break_fe15",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-02 09:43:16.721153",
+ "modified_by": "Administrator",
+ "module": "Lazerapp",
+ "name": "Employee Exit",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
