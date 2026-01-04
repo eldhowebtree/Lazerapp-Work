@@ -242,7 +242,6 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
-
 doctype_js = {
     "Material Request": [
         "public/js/material_request_item_group.js",
@@ -287,15 +286,13 @@ doctype_js = {
         "public/js/expense_claim.js",
         "public/js/extract_branch_code.js"
     ],
-    "Leave Application":[
 
-        "public/js/extract_branch_code.js",
+    "Leave Application": [
+        "public/js/extract_branch_code.js"
     ]
-
-    
-
-
 }
+
+
 
 
 fixtures = [
