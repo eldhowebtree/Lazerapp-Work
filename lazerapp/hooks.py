@@ -339,7 +339,15 @@ override_doctype_class = {
     "Purchase Receipt": "lazerapp.doctype_overrides.purchase_receipt.CustomPurchaseReceipt",
     # "Payment Entry": "lazerapp.doctype_overrides.payment_entry.PaymentEntry",
     "Purchase Invoice": "lazerapp.doctype_overrides.purchase_invoice.CustomPurchaseInvoice",
+
     "Leave Application": "lazerapp.doctype_overrides.leave_application.CustomLeaveApplication",
+}
+
+
+scheduler_events = {
+    "daily": [
+        "lazerapp.scheduler.check_vacation_overstay"
+    ]
 }
 
 
