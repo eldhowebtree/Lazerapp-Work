@@ -279,7 +279,8 @@ doctype_js = {
     ],
 
     "Employee": [
-        "public/js/extract_branch_code.js"
+        "public/js/extract_branch_code.js",
+        "public/js/hr.js"
     ],
 
     "Expense Claim": [
@@ -289,7 +290,8 @@ doctype_js = {
 
     "Leave Application": [
         "public/js/extract_branch_code.js"
-    ]
+    ],
+    
 }
 
 
