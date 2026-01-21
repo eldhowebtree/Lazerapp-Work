@@ -18,7 +18,7 @@ function calculate_family_ticket_dates(frm) {
     let years = parseInt(frm.doc.custom_family_ticket_eligibility_year, 10);
     if (isNaN(years)) return;
 
-    // 1️⃣ First eligible date
+    // 1️⃣ First eligible date (based on eligibility year)
     let eligible_from = frappe.datetime.add_months(
         frm.doc.date_of_joining,
         years * 12
@@ -26,10 +26,10 @@ function calculate_family_ticket_dates(frm) {
 
     frm.set_value("custom_family_ticket_eligible_from", eligible_from);
 
-    // 2️⃣ Next eligible cycle
+    // 2️⃣ Next eligible date (FIXED +2 years from eligible_from)
     let next_eligible = frappe.datetime.add_months(
         eligible_from,
-        years * 12
+        2 * 12
     );
 
     frm.set_value("custom_next_year_of_eligible", next_eligible);
