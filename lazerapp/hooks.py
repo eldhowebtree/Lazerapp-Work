@@ -291,6 +291,8 @@ doctype_js = {
     "Leave Application": [
         "public/js/extract_branch_code.js"
     ],
+
+    
     
 }
 
@@ -349,27 +351,55 @@ override_doctype_class = {
 scheduler_events = {
     "daily": [
         "lazerapp.scheduler.check_vacation_overstay"
+    ],
+ "yearly": [
+        "lazerapp.doctype_overrides.Carry_Forward_Encashment.process_leave_encashment"
     ]
+
 }
 
 
 
+
+
+
 doc_events = {
+
+    # ===================== ACCOUNTS / SELLING ROUNDING =====================
     "Purchase Order": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
     "Purchase Invoice": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
     "Sales Invoice": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
     "Sales Order": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
     "Quotation": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
+
+    # ===================== LEAVE APPLICATION LOGIC =====================
+"Leave Application": {
+
+    # Paid vs Unpaid leave split
+    "validate": [
+        "lazerapp.doctype_overrides.Paid_vs_Unpaid_Leave_Split.validate",
+        "lazerapp.doctype_overrides.Leave_Application_Validation.validate"
+    ],
+
+    # Reset rejoin date if unpaid leave exists
+    "on_submit": [
+        "lazerapp.doctype_overrides.Reset_Rejoin_Date_After_Unpaid_Leave.on_submit"
+    ],
+},
 
     
    "Compensatory Leave Request": {
