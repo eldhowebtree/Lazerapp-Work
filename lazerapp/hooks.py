@@ -350,14 +350,13 @@ override_doctype_class = {
 
 scheduler_events = {
     "daily": [
-        "lazerapp.scheduler.check_vacation_overstay"
+        "lazerapp.scheduler.check_vacation_overstay",
+        "lazerapp.air_ticket_scheduler.update_all_employee_air_ticket"
     ],
- "yearly": [
+    "yearly": [
         "lazerapp.doctype_overrides.Carry_Forward_Encashment.process_leave_encashment"
-    ]
-
+    ],
 }
-
 
 
 
@@ -384,6 +383,9 @@ doc_events = {
 
     "Quotation": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
+    },
+      "Air Ticket Accrual": {
+        "before_save": "lazerapp.doctype.air_ticket_accrual.air_ticket_accrual.calculate_air_ticket"
     },
 
     # ===================== LEAVE APPLICATION LOGIC =====================
