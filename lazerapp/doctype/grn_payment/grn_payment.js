@@ -98,7 +98,7 @@ function fetch_outstanding_grns(frm, filters) {
     }
 
     frappe.call({
-        method: "lazerapp.lazerapp.doctype.grn_payment.grn_payment.get_outstanding_grn_orders",
+        method: "lazerapp.doctype.grn_payment.grn_payment.get_outstanding_grn_orders",
         args: {
             supplier: frm.doc.supplier,
             company: frm.doc.custom_company,
