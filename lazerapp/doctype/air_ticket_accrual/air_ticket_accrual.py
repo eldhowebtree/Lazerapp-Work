@@ -1,7 +1,14 @@
 # Copyright (c) 2026, eldho.mathew@webtreeonline.com and contributors
 # For license information, please see license.txt
+from frappe.model.document import Document
+from frappe.utils import today, date_diff
 
-from frappe.utils import today, getdate, date_diff
+
+class AirTicketAccrual(Document):
+
+    def before_save(self):
+        calculate_air_ticket(self)
+
 
 def calculate_air_ticket(doc):
 
@@ -34,4 +41,5 @@ def calculate_air_ticket(doc):
         doc.loan_amount = doc.used_amount - doc.available_balance
     else:
         doc.loan_amount = 0
+
 

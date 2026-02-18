@@ -1,19 +1,19 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2026-02-16 10:49:44.133560",
+ "creation": "2026-02-18 07:37:28.458465",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "employee_details_section",
   "employee",
   "rejoining_date",
-  "maximum_ticket_amount",
+  "max_ticket_amount",
   "yearly_amount",
   "monthly_accrual",
   "months_completed",
+  "column_break_kxyv",
   "available_balance",
-  "column_break_8mob",
   "used_amount",
   "loan_amount",
   "last_calculated_on"
@@ -22,7 +22,7 @@
   {
    "fieldname": "employee_details_section",
    "fieldtype": "Section Break",
-   "label": "Employee Details"
+   "label": " Employee Details"
   },
   {
    "fieldname": "employee",
@@ -36,9 +36,9 @@
    "label": "Rejoining Date"
   },
   {
-   "fieldname": "maximum_ticket_amount",
+   "fieldname": "max_ticket_amount",
    "fieldtype": "Currency",
-   "label": "Maximum Ticket Amount"
+   "label": "Max Ticket Amount"
   },
   {
    "fieldname": "yearly_amount",
@@ -55,7 +55,12 @@
   {
    "fieldname": "months_completed",
    "fieldtype": "Int",
-   "label": "Months Completed"
+   "label": "Months Completed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kxyv",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "available_balance",
@@ -64,13 +69,10 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_8mob",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "used_amount",
    "fieldtype": "Currency",
-   "label": "Used Amount"
+   "label": "Used Amount",
+   "read_only": 1
   },
   {
    "fieldname": "loan_amount",
@@ -81,13 +83,14 @@
   {
    "fieldname": "last_calculated_on",
    "fieldtype": "Date",
-   "label": "Last Calculated On"
+   "label": "Last Calculated On",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-02-16 22:08:52.394637",
+ "modified": "2026-02-18 08:50:33.653898",
  "modified_by": "Administrator",
  "module": "Lazerapp",
  "name": "Air Ticket Accrual",
