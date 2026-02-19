@@ -4,6 +4,8 @@ app_publisher = "eldho.mathew@webtreeonline.com"
 app_description = "lazerapp"
 app_email = "eldho.mathew@webtreeonline.com"
 app_license = "mit"
+app_modules = ["lazerapp"]
+
 
 # Apps
 # ------------------
@@ -347,16 +349,16 @@ override_doctype_class = {
     "Leave Application": "lazerapp.doctype_overrides.leave_application.CustomLeaveApplication",
 }
 
-
 scheduler_events = {
     "daily": [
         "lazerapp.scheduler.check_vacation_overstay",
-        "lazerapp.air_ticket_scheduler.update_all_employee_air_ticket"
+        "lazerapp.lazerapp.air_ticket_scheduler.update_all_employee_air_ticket"
     ],
     "yearly": [
         "lazerapp.doctype_overrides.Carry_Forward_Encashment.process_leave_encashment"
     ],
 }
+
 
 
 
@@ -384,9 +386,9 @@ doc_events = {
     "Quotation": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
-      "Air Ticket Accrual": {
-        "before_save": "lazerapp.doctype.air_ticket_accrual.air_ticket_accrual.calculate_air_ticket"
-    },
+    #   "Air Ticket Accrual": {
+    #     "before_save": "lazerapp.Lazerapp.doctype.air_ticket_accrual.air_ticket_accrual.calculate_air_ticket"
+    # },
 
     # ===================== LEAVE APPLICATION LOGIC =====================
 "Leave Application": {

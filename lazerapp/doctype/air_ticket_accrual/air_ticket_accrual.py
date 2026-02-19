@@ -1,5 +1,6 @@
 # Copyright (c) 2026, eldho.mathew@webtreeonline.com and contributors
 # For license information, please see license.txt
+
 from frappe.model.document import Document
 from frappe.utils import today, date_diff
 
@@ -9,37 +10,50 @@ class AirTicketAccrual(Document):
     def before_save(self):
         calculate_air_ticket(self)
 
+import frappe
+from frappe.model.document import Document
+from frappe.utils import today, flt, getdate
 
-def calculate_air_ticket(doc):
+class AirTicketAccrual(Document):
 
-    if not doc.rejoining_date or not doc.max_ticket_amount:
+    def before_save(self):
+        calculate_air_ticket(self)
+
+
+def calculate_air_ticket(doc, method=None):
+
+    if not doc.rejoining_date or not doc.maximum_ticket_amount:
         return
 
-    # 2 Year Logic
     total_months = 24
 
-    # Yearly Amount
-    doc.yearly_amount = doc.max_ticket_amount / 2
+    # --- Yearly + Monthly Split ---
+    doc.yearly_amount = flt(doc.maximum_ticket_amount) / 2
+    doc.monthly_accrual = flt(doc.maximum_ticket_amount) / total_months
 
-    # Monthly Accrual
-    doc.monthly_accrual = doc.max_ticket_amount / total_months
+    # --- Safe Date Handling ---
+    today_date = getdate(today())
+    rejoin_date = getdate(doc.rejoining_date)
 
-    # Months completed from rejoining date
-    months_completed = date_diff(today(), doc.rejoining_date) // 30
+    months_completed = (
+        (today_date.year - rejoin_date.year) * 12
+        + today_date.month
+        - rejoin_date.month
+    )
+
+    # Reset after 2 years
+    months_completed = months_completed % total_months
+
+
     doc.months_completed = max(0, months_completed)
 
-    # If more than 24 months → reset
-    if doc.months_completed > 24:
-        doc.available_balance = 0
-        return
+    # --- Available Balance ---
+    accrued = doc.monthly_accrual * doc.months_completed
+    doc.available_balance = accrued
 
-    # Available Balance
-    doc.available_balance = doc.monthly_accrual * doc.months_completed
+    # --- Loan Calculation ---
+    used_amount = flt(doc.used_amount)
+    doc.loan_amount = used_amount - accrued if used_amount > accrued else 0
 
-    # Loan calculation
-    if doc.used_amount and doc.used_amount > doc.available_balance:
-        doc.loan_amount = doc.used_amount - doc.available_balance
-    else:
-        doc.loan_amount = 0
-
+    doc.last_calculated_on = today()
 
