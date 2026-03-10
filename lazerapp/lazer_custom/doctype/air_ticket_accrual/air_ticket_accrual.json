@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-18 07:37:28.458465",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_details_section",
+  "employee",
+  "rejoining_date",
+  "maximum_ticket_amount",
+  "yearly_amount",
+  "monthly_accrual",
+  "months_completed",
+  "column_break_kxyv",
+  "available_balance",
+  "used_amount",
+  "loan_amount",
+  "last_calculated_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": " Employee Details"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "rejoining_date",
+   "fieldtype": "Date",
+   "label": "Rejoining Date"
+  },
+  {
+   "fieldname": "yearly_amount",
+   "fieldtype": "Currency",
+   "label": "Yearly Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "monthly_accrual",
+   "fieldtype": "Currency",
+   "label": "Monthly Accrual",
+   "read_only": 1
+  },
+  {
+   "fieldname": "months_completed",
+   "fieldtype": "Int",
+   "label": "Months Completed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kxyv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "available_balance",
+   "fieldtype": "Currency",
+   "label": "Available Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "used_amount",
+   "fieldtype": "Currency",
+   "label": "Used Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "loan_amount",
+   "fieldtype": "Currency",
+   "label": "Loan Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_calculated_on",
+   "fieldtype": "Date",
+   "label": "Last Calculated On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "maximum_ticket_amount",
+   "fieldtype": "Currency",
+   "label": "Max Ticket Amount"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-06 10:15:26.439644",
+ "modified_by": "Administrator",
+ "module": "Lazer Custom",
+ "name": "Air Ticket Accrual",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
