@@ -1,4 +1,5 @@
 import frappe
+<<<<<<< HEAD
 from frappe.utils import flt
 
 def validate(doc, method=None):
@@ -19,3 +20,19 @@ def validate(doc, method=None):
     frappe.msgprint(
         f"Paid Leave: {doc.paid_leave_days} | Unpaid Leave: {doc.unpaid_leave_days}"
     )
+=======
+
+def validate(self):
+    leave_balance = frappe.db.get_value(
+        "Leave Allocation",
+        {"employee": self.employee, "leave_type": self.leave_type},
+        "total_leaves_allocated"
+    ) or 0
+
+    if self.total_leave_days > leave_balance:
+        self.paid_leave_days = leave_balance
+        self.unpaid_leave_days = self.total_leave_days - leave_balance
+    else:
+        self.paid_leave_days = self.total_leave_days
+        self.unpaid_leave_days = 0
+>>>>>>> 9254072939bef416aed5853d21e1352144f8f7fc

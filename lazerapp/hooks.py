@@ -294,11 +294,14 @@ doctype_js = {
         "public/js/extract_branch_code.js"
     ],
 
+<<<<<<< HEAD
     "Additional Salary":[
         "public/js/additional_salary.js"
     ]
 
 
+=======
+>>>>>>> 9254072939bef416aed5853d21e1352144f8f7fc
     
     
 }
@@ -401,8 +404,12 @@ doc_events = {
     # Paid vs Unpaid leave split
     "validate": [
         "lazerapp.doctype_overrides.Paid_vs_Unpaid_Leave_Split.validate",
+<<<<<<< HEAD
        
         
+=======
+        "lazerapp.doctype_overrides.Leave_Application_Validation.validate"
+>>>>>>> 9254072939bef416aed5853d21e1352144f8f7fc
     ],
 
     # Reset rejoin date if unpaid leave exists
