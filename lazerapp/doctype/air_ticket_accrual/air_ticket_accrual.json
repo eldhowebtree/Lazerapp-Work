@@ -77,8 +77,8 @@
   {
    "fieldname": "loan_amount",
    "fieldtype": "Currency",
-   "label": "Loan Amount",
-   "read_only": 1
+   "label": "Loan Amount"
+   
   },
   {
    "fieldname": "last_calculated_on",

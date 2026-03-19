@@ -1,17 +1,17 @@
-frappe.ui.form.on("Purchase Receipt", {
-    refresh(frm) {
-        if (frm.doc.docstatus === 1) {
-            frm.add_custom_button("Make GRN Payment", () => {
-                frappe.new_doc("GRN Payment", {
-                    supplier: frm.doc.supplier,
-                    company: frm.doc.company,
-                    purchase_receipt: frm.doc.name,
-                    amount: frm.doc.grand_total
-                });
-            }).addClass("btn-success");
-        }
-    }
-});
+// frappe.ui.form.on("Purchase Receipt", {
+//     refresh(frm) {
+//         if (frm.doc.docstatus === 1) {
+//             frm.add_custom_button("Make GRN Payment", () => {
+//                 frappe.new_doc("GRN Payment", {
+//                     supplier: frm.doc.supplier,
+//                     company: frm.doc.company,
+//                     purchase_receipt: frm.doc.name,
+//                     amount: frm.doc.grand_total
+//                 });
+//             }).addClass("btn-success");
+//         }
+//     }
+// });
 
 
 

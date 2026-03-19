@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{employee}",
  "creation": "2026-02-18 07:37:28.458465",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -72,8 +73,7 @@
   {
    "fieldname": "loan_amount",
    "fieldtype": "Currency",
-   "label": "Loan Amount",
-   "read_only": 1
+   "label": "Loan Amount"
   },
   {
    "fieldname": "last_calculated_on",
@@ -90,10 +90,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-06 10:15:26.439644",
+ "modified": "2026-03-18 16:27:04.843544",
  "modified_by": "Administrator",
  "module": "Lazer Custom",
  "name": "Air Ticket Accrual",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
