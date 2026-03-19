@@ -17,4 +17,9 @@ def validate(doc, method=None):
     doc.custom_unpaid_leave_days = max(total_days - leave_balance, 0)
 
     if doc.custom_unpaid_leave_days > 0:
+<<<<<<< HEAD
         doc.flags.ignore_leave_balance = True
+=======
+        doc.flags.ignore_leave_balance = True
+
+>>>>>>> 19ae3bb9c82fb01e2c0188c42fcd6392b1a4bcf3
