@@ -20,6 +20,6 @@ def validate(doc, method=None):
 
         doc.flags.ignore_leave_balance = True
 
-        doc.flags.ignore_leave_balance = True
+        
 
 
