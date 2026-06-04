@@ -39,12 +39,20 @@
                         <input type="number" id="year" class="form-control" value="2026">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="form-group">
                         <label>Employee</label>
                         <input type="text" id="employee" class="form-control" placeholder="Employee ID">
                     </div>
-                </div>
+                </div> -->
+                <div class="col-md-4">
+    <div class="form-group">
+        <label>Employee</label>
+        <select id="employee" class="form-control">
+            <option value="">Select Employee</option>
+        </select>
+    </div>
+</div>
             </div>
             
             <div class="row mt-3">
@@ -65,8 +73,41 @@
         </div>
     </div>
 </div>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
+    function loadEmployees() {
+
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "Employee",
+            fields: ["name", "employee_name"],
+            limit_page_length: 1000
+        },
+        callback: function(r) {
+
+            console.log("Employees:", r);
+
+            let select = document.getElementById("employee");
+
+            select.innerHTML =
+                '<option value="">Select Employee</option>';
+
+            if (r.message) {
+
+                r.message.forEach(function(emp) {
+
+                    select.innerHTML +=
+                        `<option value="${emp.name}">
+                            ${emp.name} - ${emp.employee_name}
+                         </option>`;
+                });
+            }
+        }
+    });
+}
 function calculateOT() {
     const employee = document.getElementById('employee').value;
     const month = document.getElementById('month').value;
@@ -227,10 +268,23 @@ function displayBulkResults(data) {
 }
 
 // Set current month and year on page load
+// document.addEventListener('DOMContentLoaded', function() {
+//     const now = new Date();
+//     document.getElementById('month').value = now.getMonth() + 1;
+//     document.getElementById('year').value = now.getFullYear();
+// });
 document.addEventListener('DOMContentLoaded', function() {
+
     const now = new Date();
-    document.getElementById('month').value = now.getMonth() + 1;
-    document.getElementById('year').value = now.getFullYear();
+
+    document.getElementById('month').value =
+        now.getMonth() + 1;
+
+    document.getElementById('year').value =
+        now.getFullYear();
+
+    loadEmployees();
+
 });
 </script>
 
