@@ -99,7 +99,8 @@ def calculate_category_1(employee, gross_salary, total_hours, attendance_list, d
     
     mandatory_hours_per_month = mandatory_hours_per_day * expected_working_days
     extra_hours = max(0, total_hours - mandatory_hours_per_month)
-    
+    if extra_hours < 1:
+        extra_hours = 0
     # Calculation
     daily_rate = gross_salary / 30
     hourly_rate = daily_rate / mandatory_hours_per_day
@@ -143,8 +144,12 @@ def calculate_category_2(employee, base_salary, total_hours, attendance_list, da
     normal_day_hours = total_hours - public_holiday_hours
     
     # Calculate extra hours on normal days
+    # extra_normal_hours = max(0, normal_day_hours - mandatory_hours_per_month)
     extra_normal_hours = max(0, normal_day_hours - mandatory_hours_per_month)
-    
+
+    if extra_normal_hours < 1:
+        extra_normal_hours = 0
+
     # Calculate OT
     normal_day_ot = extra_normal_hours * 1.25
     public_holiday_ot = public_holiday_hours * 1.5
@@ -192,7 +197,9 @@ def calculate_category_3(employee, base_salary, total_hours, attendance_list, da
     
     # Calculate extra hours on normal days
     extra_normal_hours = max(0, normal_day_hours - mandatory_hours_per_month)
-    
+    if extra_normal_hours < 1:
+        extra_normal_hours = 0
+
     # Calculate OT
     normal_day_ot = extra_normal_hours * 1.25
     public_holiday_ot = public_holiday_hours * 1.5
@@ -243,7 +250,9 @@ def calculate_category_4(employee, base_salary, total_hours, attendance_list, da
     
     # Calculate extra hours on normal days
     extra_normal_hours = max(0, normal_day_hours - mandatory_hours_per_month)
-    
+    if extra_normal_hours < 1:
+        extra_normal_hours = 0
+        
     # Calculate OT
     normal_day_ot = extra_normal_hours * 1.25
     public_holiday_ot = public_holiday_hours * 1.5
