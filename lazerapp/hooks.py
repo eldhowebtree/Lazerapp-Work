@@ -381,9 +381,9 @@ doc_events = {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
     },
 
-    "Sales Invoice": {
-        "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
-    },
+    # "Sales Invoice": {
+    #     "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
+    # },
 
     "Sales Order": {
         "before_save": "lazerapp.doctype_overrides.bahrain_rounding.apply_bahrain_rounding"
