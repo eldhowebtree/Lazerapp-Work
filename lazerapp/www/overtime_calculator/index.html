@@ -133,45 +133,183 @@ function calculateOT() {
     });
 }
 
+// function displayResults(data) {
+//     let html = `
+//         <div class="card mt-4">
+//             <div class="card-header bg-info text-white">
+//                 <h4>Overtime Calculation Results</h4>
+//             </div>
+//             <div class="card-body">
+//                 <table class="table table-bordered">
+//                     <tr><th>Category</th><td>${data.category}</td></tr>
+//                     <tr><th>Total Working Hours</th><td>${data.total_working_hours.toFixed(2)}</td></tr>
+//                     <tr><th>Mandatory Hours</th><td>${data.mandatory_hours.toFixed(2)}</td></tr>
+//                     <tr><th>Extra Hours</th><td>${(data.extra_hours || data.extra_normal_hours || 0).toFixed(2)}</td></tr>
+//     `;
+    
+//     if (data.public_holiday_hours) {
+//         html += `<tr><th>Public Holiday Hours</th><td>${data.public_holiday_hours.toFixed(2)}</td></tr>`;
+//     }
+    
+//     html += `
+//                     <tr class="table-success"><th><strong>Overtime Amount</strong></th><td><strong>${data.overtime_amount.toFixed(3)} BHD</strong></td></tr>
+//                 </table>
+                
+//                 <h5 class="mt-3">Calculation Breakdown:</h5>
+//                 <div class="alert alert-light">
+//     `;
+    
+//     if (data.calculation_breakdown) {
+//         for (let key in data.calculation_breakdown) {
+//             html += `<p><strong>${key}:</strong> ${data.calculation_breakdown[key]}</p>`;
+//         }
+//     }
+    
+//     html += `
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+    
+//     document.getElementById('results').innerHTML = html;
+// }
 function displayResults(data) {
+    console.log("OT Data received:", data); // debug log
+
+    // Handle missing fields safely
+    let extraHours = data.extra_hours || data.extra_normal_hours || 0;
+    let mandatoryHours = data.mandatory_hours_per_day || 0;
+
     let html = `
         <div class="card mt-4">
-            <div class="card-header bg-info text-white">
-                <h4>Overtime Calculation Results</h4>
+            <div class="card-header" style="background:#DE2326;">
+                <h4 style="color:#fff; margin:0;">Overtime Calculation Results</h4>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
-                    <tr><th>Category</th><td>${data.category}</td></tr>
-                    <tr><th>Total Working Hours</th><td>${data.total_working_hours.toFixed(2)}</td></tr>
-                    <tr><th>Mandatory Hours</th><td>${data.mandatory_hours.toFixed(2)}</td></tr>
-                    <tr><th>Extra Hours</th><td>${(data.extra_hours || data.extra_normal_hours || 0).toFixed(2)}</td></tr>
+                    <tr><th>Category</th><td>${data.category || ''}</td></tr>
+                    <tr><th>Total Working Hours</th><td>${(data.total_working_hours || 0).toFixed(2)}</td></tr>
+                    <tr><th>Mandatory Hours/Day</th><td>${mandatoryHours.toFixed(2)}</td></tr>
+                    <tr><th>Extra Hours (OT)</th><td>${extraHours.toFixed(2)}</td></tr>
     `;
-    
-    if (data.public_holiday_hours) {
-        html += `<tr><th>Public Holiday Hours</th><td>${data.public_holiday_hours.toFixed(2)}</td></tr>`;
+
+    if (data.public_holiday_hours !== undefined) {
+        html += `<tr><th>Public Holiday Hours</th><td>${(data.public_holiday_hours || 0).toFixed(2)}</td></tr>`;
     }
-    
+
+    if (data.normal_day_ot !== undefined) {
+        html += `<tr><th>Normal Day OT</th><td>${(data.normal_day_ot || 0).toFixed(3)}</td></tr>`;
+    }
+
+    if (data.public_holiday_ot !== undefined) {
+        html += `<tr><th>Public Holiday OT</th><td>${(data.public_holiday_ot || 0).toFixed(3)}</td></tr>`;
+    }
+
     html += `
-                    <tr class="table-success"><th><strong>Overtime Amount</strong></th><td><strong>${data.overtime_amount.toFixed(3)} BHD</strong></td></tr>
+                    <tr class="table-success">
+                        <th><strong>Overtime Amount</strong></th>
+                        <td><strong>${(data.overtime_amount || 0).toFixed(3)} BHD</strong></td>
+                    </tr>
                 </table>
-                
+
                 <h5 class="mt-3">Calculation Breakdown:</h5>
                 <div class="alert alert-light">
     `;
-    
+
     if (data.calculation_breakdown) {
         for (let key in data.calculation_breakdown) {
             html += `<p><strong>${key}:</strong> ${data.calculation_breakdown[key]}</p>`;
         }
     }
-    
-    html += `
+
+    // Show per day detail if available
+    if (data.per_day_detail && data.per_day_detail.length > 0) {
+        html += `
                 </div>
-            </div>
+                <h5 class="mt-3">Per Day Detail:</h5>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Working Hrs</th>
+                            <th>Shift End</th>
+                            <th>After Shift</th>
+                            <th>Excess Break</th>
+                            <th>OT Hours</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        data.per_day_detail.forEach(function(day) {
+            let rowClass = day.eligible_extra > 0 ? 'table-success' : '';
+            html += `
+                <tr class="${rowClass}">
+                    <td>${day.date || ''}</td>
+                    <td>${day.type || ''}</td>
+                    <td>${(day.hours || 0).toFixed(2)}</td>
+                    <td>${day.shift_end || 'N/A'}</td>
+                    <td>${(day.after_shift_raw || 0).toFixed(2)}</td>
+                    <td>${(day.excess_break || 0).toFixed(2)}</td>
+                    <td><strong>${(day.eligible_extra || 0).toFixed(2)}</strong></td>
+                    <td><small>${day.note || ''}</small></td>
+                </tr>
+            `;
+        });
+        html += `</tbody></table>`;
+    } else {
+        html += `</div>`;
+    }
+
+    html += `</div></div>`;
+
+    document.getElementById('results').innerHTML = html;
+}
+function calculateOT() {
+    const employee = document.getElementById('employee').value;
+    const month = document.getElementById('month').value;
+    const year = document.getElementById('year').value;
+
+    if (!employee) {
+        frappe.msgprint('Please select an Employee');
+        return;
+    }
+
+    document.getElementById('results').innerHTML = `
+        <div class="alert alert-info mt-3">
+            <i class="fa fa-spinner fa-spin"></i> Calculating overtime...
         </div>
     `;
-    
-    document.getElementById('results').innerHTML = html;
+
+    frappe.call({
+        method: 'lazerapp.overtime_calculator.calculate_monthly_overtime',
+        args: {
+            employee: employee,
+            month: month,
+            year: year
+        },
+        callback: function(r) {
+            console.log("Full response:", r);
+            if (r.message) {
+                displayResults(r.message);
+            } else {
+                document.getElementById('results').innerHTML = `
+                    <div class="alert alert-warning mt-3">
+                        No overtime data returned. Check error log.
+                    </div>
+                `;
+            }
+        },
+        error: function(err) {
+            console.error("OT calculation error:", err);
+            document.getElementById('results').innerHTML = `
+                <div class="alert alert-danger mt-3">
+                    Error: ${err.message || 'Unknown error. Check browser console.'}
+                </div>
+            `;
+        }
+    });
 }
 
 function createAdditionalSalary() {
