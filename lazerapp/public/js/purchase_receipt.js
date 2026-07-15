@@ -20,39 +20,31 @@
  ********************************/
 frappe.ui.form.on('Purchase Receipt Item', {
     custom_quantity(frm, cdt, cdn) {
-        calculate_item(cdt, cdn, frm);
+        calculate_item(frm, cdt, cdn);
     },
+
     rate(frm, cdt, cdn) {
-        calculate_item(cdt, cdn, frm);
+        calculate_item(frm, cdt, cdn);
     },
+
     custom_vat_bd(frm, cdt, cdn) {
-        calculate_item(cdt, cdn, frm);
+        calculate_item(frm, cdt, cdn);
     }
 });
 
-function calculate_item(cdt, cdn, frm) {
+function calculate_item(frm, cdt, cdn) {
     let row = locals[cdt][cdn];
 
     let qty = flt(row.custom_quantity);
     let rate = flt(row.rate);
     let vat = flt(row.custom_vat_bd);
 
-    // ✅ FINAL FORMULA
-    let amount = (rate * qty) + vat;
+    let amount = (qty * rate) + vat;
 
-    frappe.model.set_value(cdt, cdn, 'amount', amount);
+    frappe.model.set_value(cdt, cdn, "amount", amount);
 
-    calculate_totals(frm);
-}
+    frm.refresh_field("items");
 
-function calculate_totals(frm) {
-    let total = 0;
-
-    (frm.doc.items || []).forEach(row => {
-        total += flt(row.amount);
-    });
-
-    frm.set_value('total', total);
-    frm.set_value('grand_total', total);
-    frm.set_value('base_grand_total', total);
+    // Let ERPNext recalculate all totals
+    frm.trigger("calculate_taxes_and_totals");
 }
