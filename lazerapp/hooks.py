@@ -259,7 +259,7 @@ doctype_js = {
     ],
 
     "Purchase Receipt": [
-        "public/js/purchase_receipt.js",
+        # "public/js/purchase_receipt.js",
         "public/js/extract_branch_code.js"
     ],
 
@@ -348,7 +348,7 @@ app_include_css = ["lazerapp/public/css/history_back.css"]
 
 override_doctype_class = {
     "Purchase Order": "lazerapp.doctype_overrides.purchase_order_override.CustomPurchaseOrder",
-    "Purchase Receipt": "lazerapp.doctype_overrides.purchase_receipt.CustomPurchaseReceipt",
+    # "Purchase Receipt": "lazerapp.doctype_overrides.purchase_receipt.CustomPurchaseReceipt",
     # "Payment Entry": "lazerapp.doctype_overrides.payment_entry.PaymentEntry",
     "Purchase Invoice": "lazerapp.doctype_overrides.purchase_invoice.CustomPurchaseInvoice",
 
